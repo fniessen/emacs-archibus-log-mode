@@ -1,0 +1,35 @@
+#+TITLE:     Emacs ARCHIBUS Log mode
+#+AUTHOR:    Fabrice Niessen
+#+EMAIL:     (concat "fni" at-sign "pirilampo.be")
+#+DESCRIPTION:
+#+KEYWORDS:  emacs mode archibus log file
+#+LANGUAGE:  en
+#+OPTIONS:   H:4 num:t toc:t ^:{}
+
+#+SETUPFILE: https://fniessen.github.io/org-html-themes/setup/theme-readtheorg.setup
+
+Emacs major mode for [[https://archibus.com/][ARCHIBUS]] log files.
+
+* Installing
+
+Add the following to your =~/.emacs= config:
+
+#+begin_src emacs-lisp
+(let ((ablog-mode-lib "~/path/to/emacs-archibus-log-mode/archibus-log.el"))
+  (when (locate-library ablog-mode-lib)
+    (load-library ablog-mode-lib)))
+#+end_src
+
+and restart your favorite editor.
+
+* Features
+
+- SQL syntax highlighting
+- Commands for moving
+  + previous/next "read" SQL statement (~SELECT~)
+  + previous/next "change" SQL statement (~INSERT~, ~UPDATE~ or ~DELETE~)
+  + previous/next error
+
+* Screenshots
+
+[[file:img/sample.png]]
