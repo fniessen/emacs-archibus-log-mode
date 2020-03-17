@@ -25,6 +25,10 @@ and restart your favorite editor.
 * Features
 
 - SQL syntax highlighting
+  + ~SELECT~ in yellow
+  + ~INSERT~ in green
+  + ~UPDATE~ in blue
+  + ~DELETE~ in red
 - Commands for moving
   + previous/next "read" SQL statement (~SELECT~)
   + previous/next "change" SQL statement (~INSERT~, ~UPDATE~ or ~DELETE~)
