@@ -30,9 +30,9 @@ and restart your favorite editor.
   + ~UPDATE~ in blue
   + ~DELETE~ in red
 - Commands for moving
-  + previous/next "read" SQL statement (~SELECT~)
-  + previous/next "change" SQL statement (~INSERT~, ~UPDATE~ or ~DELETE~)
-  + previous/next error
+  + Go to previous/next "read" SQL statement (~SELECT~)
+  + Go to previous/next "change" SQL statement (~INSERT~, ~UPDATE~ or ~DELETE~)
+  + Go to previous/next error
 
 * Screenshots
 
