@@ -819,53 +819,6 @@ edit a log file which is still in use.  So, hide is preferred..."
 (define-key global-map (kbd "H-w")   #'ablog-kill-ring-save-sql-command)
 (define-key global-map (kbd "M-²")   #'ablog-kill-ring-save-sql-command)
 
-;; Highlight entire visible lines when calling highlight-regexp and the regexp ends with .*.
-(define-advice highlight-regexp (:around (orig regexp &rest args) "maybe-whole-line")
-  (if (string-suffix-p ".*" regexp)
-      ;; use modified overlay bounds
-      (let (font-lock-mode)
-        (cl-letf* ((orig-make-overlay (symbol-function 'make-overlay))
-                   ((symbol-function 'make-overlay)
-                    (lambda (&rest _args)
-                      (funcall orig-make-overlay
-                               (line-beginning-position) ; could start from match
-                               (line-beginning-position 2)))))
-          (apply orig regexp args)))
-    (apply orig regexp args)))
-
-(defface axvw-panel
-  '((t :background "#E4F0FB")) ;; F4E6FF magenta
-  "Face for panel in AXVW files.")
-
-(defface axvw-datasource
-  '((t :background "#E4F3EA"))
-  "Face for datasource in AXVW files.")
-
-(defface axvw-action
-  '((t :background "#FFF1DE"))
-  "Face for action in AXVW files.")
-
-(defun my/highlight-in-axvw-files ()
-  "Highlight regexps in AXVW files."
-  (when (string-match-p ".axvw" (file-name-nondirectory buffer-file-name))
-    (highlight-regexp ".*dataSource id=\"[^\"]*\".*" 'axvw-datasource)
-    (highlight-regexp ".*panel.* id=\"[^\"]*\".*" 'axvw-panel)
-    (highlight-regexp "dataSource=\"[^\"]*\"" 'axvw-datasource)
-    (highlight-regexp "action id=\"[^\"]*\"" 'axvw-action)
-    (highlight-regexp "functionName=\"[^\"]*\"" 'highlight)))
-
-(add-hook 'find-file-hook #'my/highlight-in-axvw-files)
-
-;; TODO: In JS files, highlight startJob, and Call...
-
-(defun my/highlight-in-properties-files ()
-  "Highlight regexps in PROPERTIES files."
-  (when (string-match-p ".properties" (file-name-nondirectory buffer-file-name))
-    (highlight-regexp "true$" 'hi-green)
-    (highlight-regexp "false$" 'hi-pink)))
-
-(add-hook 'find-file-hook #'my/highlight-in-properties-files)
-
 (provide 'ablog)
 
 ;;; archibus-log.el ends here
