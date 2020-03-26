@@ -29,6 +29,16 @@ and restart your favorite editor.
   + ~INSERT~ in green
   + ~UPDATE~ in blue
   + ~DELETE~ in red
+  + Useless stuff in gray
+  + Number of rows affected
+    * "Updated: 0 records" in red
+    * "Updated: 1 records" in green
+    * "Updated: N records" (N > 1) in yellow
+  + Other items
+    * ~_id~~ fields
+    * ~date_~ and ~_status~ fields
+    * Numbers and Dates
+    * Strings
 - Commands for moving
   + Go to previous / next "read" SQL statement (~SELECT~) with ~R~ / ~r~
   + Go to previous / next "change" SQL statement (~INSERT~, ~UPDATE~ or ~DELETE~) with
