@@ -31,9 +31,9 @@ and restart your favorite editor.
   + ~DELETE~ in red
   + Useless stuff in gray
   + Number of rows affected
-    * "Updated: 0 records" in red
-    * "Updated: 1 records" in green
-    * "Updated: N records" (N > 1) in yellow
+    * ~Updated: 0 records~ in red
+    * ~Updated: 1 records~ in green
+    * ~Updated: N records~ (where ~N~ > 1) in yellow
   + Other items
     * ~_id~ fields
     * ~date_~ and ~_status~ fields
