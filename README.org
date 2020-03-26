@@ -35,7 +35,7 @@ and restart your favorite editor.
     * "Updated: 1 records" in green
     * "Updated: N records" (N > 1) in yellow
   + Other items
-    * ~_id~~ fields
+    * ~_id~ fields
     * ~date_~ and ~_status~ fields
     * Numbers and Dates
     * Strings
