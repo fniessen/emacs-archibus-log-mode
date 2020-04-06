@@ -45,6 +45,6 @@ and restart your favorite editor.
     ~W~ / ~w~
   + Go to previous / next error with ~E~ / ~e~
 
-* Screenshots
+* Screenshot
 
-[[file:img/sample.png]]
+[[file:images/sample.png]]
