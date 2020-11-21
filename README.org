@@ -15,7 +15,7 @@ Emacs major mode for [[https://archibus.com/][ARCHIBUS]] log files.
 Add the following to your =~/.emacs= config:
 
 #+begin_src emacs-lisp
-(let ((ablog-mode-lib "~/path/to/emacs-archibus-log-mode/archibus-log.el"))
+(let ((ablog-mode-lib "~/PATH/TO/emacs-archibus-log-mode/lisp/archibus-log.el"))
   (when (locate-library ablog-mode-lib)
     (load-library ablog-mode-lib)))
 #+end_src
