@@ -1,21 +1,21 @@
-#+TITLE:     Emacs ARCHIBUS Log mode
+#+TITLE:     Emacs Archibus Log mode
 #+AUTHOR:    Fabrice Niessen
 #+EMAIL:     (concat "fni" at-sign "pirilampo.be")
 #+DESCRIPTION:
 #+KEYWORDS:  emacs mode archibus log file
 #+LANGUAGE:  en
-#+OPTIONS:   H:4 num:t toc:t ^:{}
+#+OPTIONS:   H:4 num:nil toc:t ^:{}
 
-#+SETUPFILE: https://fniessen.github.io/org-html-themes/setup/theme-readtheorg.setup
+#+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-readtheorg.setup
 
-Emacs major mode for [[https://archibus.com/][ARCHIBUS]] log files.
+Emacs major mode for [[https://archibus.com/][Archibus]] log files.
 
 * Installing
 
 Add the following to your =~/.emacs= config:
 
 #+begin_src emacs-lisp
-(let ((ablog-mode-lib "~/PATH/TO/emacs-archibus-log-mode/lisp/archibus-log.el"))
+(let ((ablog-mode-lib "PATH/TO/emacs-archibus-log-mode/.emacs.d/lisp/archibus-log.el"))
   (when (locate-library ablog-mode-lib)
     (load-library ablog-mode-lib)))
 #+end_src
@@ -24,26 +24,29 @@ and restart your favorite editor.
 
 * Features
 
-- SQL syntax highlighting
-  + ~SELECT~ in yellow
-  + ~INSERT~ in green
-  + ~UPDATE~ in blue
-  + ~DELETE~ in red
-  + Useless stuff in gray
-  + Number of rows affected
-    * ~Updated: 0 records~ in red
-    * ~Updated: 1 records~ in green
-    * ~Updated: N records~ (where ~N~ > 1) in yellow
-  + Other items
-    * ~_id~ fields
-    * ~date_~ and ~_status~ fields
-    * Numbers and Dates
-    * Strings
-- Commands for moving
-  + Go to previous / next "read" SQL statement (~SELECT~) with ~R~ / ~r~
-  + Go to previous / next "change" SQL statement (~INSERT~, ~UPDATE~ or ~DELETE~) with
-    ~W~ / ~w~
-  + Go to previous / next error with ~E~ / ~e~
+** SQL syntax highlighting
+
+- ~SELECT~ in yellow
+- ~INSERT~ in green
+- ~UPDATE~ in blue
+- ~DELETE~ in red
+- Useless stuff in gray
+- Number of rows affected
+  + ~Updated: 0 records~ in red
+  + ~Updated: 1 records~ in green
+  + ~Updated: N records~ (where ~N~ > 1) in yellow
+- Other items
+  + ~_id~ fields
+  + ~date_~ and ~_status~ fields
+  + Numbers and Dates
+  + Strings
+
+** Commands for moving
+
+- Go to previous / next "read" SQL statement (~SELECT~) with ~R~ / ~r~
+- Go to previous / next "change" SQL statement (~INSERT~, ~UPDATE~ or ~DELETE~) with ~W~
+  / ~w~
+- Go to previous / next error with ~E~ / ~e~
 
 * Screenshot
 
