@@ -4,9 +4,18 @@
 #+DESCRIPTION:
 #+KEYWORDS:  emacs mode archibus log file
 #+LANGUAGE:  en
-#+OPTIONS:   H:4 num:nil toc:t ^:{}
+#+OPTIONS:   H:4 num:nil toc:2 ^:{}
 
-#+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-readtheorg.setup
+# #+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-readtheorg.setup
+#+SETUPFILE: ~/org/theme-readtheorg-local-abs.setup
+
+#+begin_export html
+<div class="right">
+  <a href="https://github.com/fniessen/emacs-archibus-log-mode/blob/master/README.org" class="fa fa-github"> Edit on GitHub</a>
+</div>
+#+end_export
+
+-----
 
 Emacs major mode for [[https://archibus.com/][Archibus]] log files.
 
@@ -51,3 +60,9 @@ and restart your favorite editor.
 * Screenshot
 
 [[file:images/sample.png]]
+
+-----
+
+© Copyright 2020, Fabrice Niessen.
+
+Built using the theme [[https://github.com/fniessen/org-html-themes][ReadTheOrg]] provided by [[https://github.com/fniessen/org-html-themes][Org-HTML-Themes]].
