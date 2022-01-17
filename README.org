@@ -62,6 +62,6 @@ and restart your favorite editor.
 
 -----
 
-© Copyright 2020-2021, Fabrice Niessen.
+© Copyright 2020-2022 Fabrice Niessen
 
 Built using the theme [[https://github.com/fniessen/org-html-themes][ReadTheOrg]] provided by [[https://github.com/fniessen/org-html-themes][Org-HTML-Themes]].
