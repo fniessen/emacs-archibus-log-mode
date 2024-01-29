@@ -621,37 +621,27 @@
         (setq last (match-string 0)))))
   (message "Adding separator lines... Done"))
 
+(defun ablog-error-navigation (direction)
+  "Navigate to the previous or next error based on DIRECTION (1 for next, -1 for previous)."
+  (let ((case-fold-search nil))
+    (if (re-search-forward ablog-error-regexp nil t direction)
+        (progn
+          (narrow-to-region (point-min) (line-end-position))
+          (let ((current-count (ablog-count-errors)))
+            (widen)
+            (message "%d of %d errors" current-count (ablog-count-errors))))
+      (message (if (= direction 1) "No more errors" "No previous errors")))))
+
 (defun ablog-previous-error ()
   "Go to the previous error."
   (interactive)
   (beginning-of-line)
-  (let ((case-fold-search nil))
-    (if (search-backward-regexp ablog-error-regexp nil t)
-        (progn
-          (narrow-to-region (point-min) (line-end-position))
-          (let ((current-count (ablog-count-errors)))
-            (widen)
-            (message "%d of %d errors" current-count (ablog-count-errors))))
-      (message "No previous errors"))))
-
-(defun this-error-is-real ()
-  "Eee."
-  (looking-at "[ERROR][2018-05-29 07:39:25,149][Authenticated] - [Page [/login.html] is not allowed]")
-  (message "test")
-  )
+  (ablog-error-navigation -1))
 
 (defun ablog-next-error ()
   "Go to the next error."
   (interactive)
-  (let ((case-fold-search nil))
-    (if (search-forward-regexp ablog-error-regexp nil t)
-        ;; TODO: Bypass lines [ERROR][2018-05-29 07:39:25,149][Authenticated] - [Page [/login.html] is not allowed]
-        (progn
-          (narrow-to-region (point-min) (line-end-position))
-          (let ((current-count (ablog-count-errors)))
-            (widen)
-            (message "%d of %d errors" current-count (ablog-count-errors))))
-      (message "No more errors"))))
+  (ablog-error-navigation 1))
 
 (defun ablog-previous-read-or-change ()
   "Go to line of previous SQL statement."
