@@ -289,29 +289,27 @@
 
 ;;; Key map.
 (defvar ablog-map
-  (let ((map (make-sparse-keymap)))
+  (let ((map (make-sparse-keymap))
+        (bindings '(("D" . ablog-previous-read-or-change)
+                    ("d" . ablog-next-read-or-change)
+                    ("R" . ablog-previous-read)
+                    ("r" . ablog-next-read)
+                    ("W" . ablog-previous-change)
+                    ("w" . ablog-next-change)
+                    ("E" . ablog-previous-error)
+                    ("e" . ablog-next-error)
+                    ("H" . ablog-previous-highlighted-class)
+                    ("h" . ablog-next-highlighted-class)
+                    ("C-a" . ablog-move-beginning-of-line)
+                    ("C-x C-j" . nil)))) ; Disable dired-jump.
+
     ;; Set parent map for ablog-map.
     (set-keymap-parent map special-mode-map)
 
-    (define-key map (kbd "D") #'ablog-previous-read-or-change)
-    (define-key map (kbd "d") #'ablog-next-read-or-change)
+    ;; Define key bindings.
+    (dolist (binding bindings)
+      (define-key map (kbd (car binding)) (cdr binding)))
 
-    (define-key map (kbd "R") #'ablog-previous-read)
-    (define-key map (kbd "r") #'ablog-next-read)
-
-    (define-key map (kbd "W") #'ablog-previous-change)
-    (define-key map (kbd "w") #'ablog-next-change)
-
-    (define-key map (kbd "E") #'ablog-previous-error)
-    (define-key map (kbd "e") #'ablog-next-error)
-
-    (define-key map (kbd "H") #'ablog-previous-highlighted-class)
-    (define-key map (kbd "h") #'ablog-next-highlighted-class)
-
-    (define-key map (kbd "C-a") #'ablog-move-beginning-of-line)
-
-    ;; Disable dired-jump.
-    (define-key map (kbd "C-x C-j") nil)
     map)
   "Keymap for ablog buffers.")
 
