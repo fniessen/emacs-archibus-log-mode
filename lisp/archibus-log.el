@@ -565,33 +565,34 @@
   "Major mode for viewing ARCHIBUS Log files.
 
 \\{ablog-map}"
-  (setq-local cursor-type 'box)
+  :group 'ablog
 
-  (setq mode-name "ARCHIBUS-Log")
+  ;; Initialization.
+  (setq-local cursor-type 'box)
+  (setq-local mode-name "ARCHIBUS-Log")
   (read-only-mode 1)
   (use-local-map ablog-map)
-
-  ;; (set-buffer-file-coding-system 'utf-8-dos)
   (setq-local scroll-margin 6)
 
-  ;; Limit of search number.
+  ;; Anzu setup.
   (when (featurep 'anzu)
     (setq-local anzu-search-threshold 1000))
 
+  ;; Highlighting fields.
   (ablog-highlight-fields)
 
-  ;; Enable hl-line-mode automatically.
+  ;; Automatic modes.
   (when (featurep 'hl-line)
     (hl-line-mode))
 
-  ;; Enable auto-highlight-symbol-mode automatically.
   (when (featurep 'auto-highlight-symbol)
-    (add-to-list 'ahs-modes 'ablog))
+    (add-to-list 'ahs-modes 'ablog)
+    (auto-highlight-symbol-mode))
 
-  (auto-highlight-symbol-mode)
-
+  ;; Run hooks.
   (run-hooks 'ablog-hook)
 
+  ;; Display separator line.
   ;; (ablog-display-separator-line)
 
   (ablog-display-count-errors))
