@@ -604,19 +604,19 @@
   "Number of seconds to wait before inserting separator.")
 
 (defun ablog-display-separator-line ()
-  "Separate blocks of log lines with an horizontal line."
+  "Separate blocks of log lines with a horizontal line."
   (interactive)
   (message "Adding separator lines... (This can take a while)")
   (save-excursion
     (goto-char (point-min))
-    (let (last ov)
+    (let ((last nil) ov)
       (while (re-search-forward "[0-9]\\{4\\}-[01][1-9]-[0-3][0-9] [0-2][0-9]:[0-5][0-9]:[0-5][0-9]" nil t)
         (when last
-          (when (> (- (float-time (date-to-time (match-string 0)))
-                      (float-time (date-to-time last)))
-                   ablog-idle-interval)
-            (setq ov (make-overlay (line-beginning-position) (line-end-position)))
-            (overlay-put ov 'face 'ablog-separator-face)))
+          (let ((time-diff (- (float-time (date-to-time (match-string 0)))
+                              (float-time (date-to-time last)))))
+            (when (> time-diff ablog-idle-interval)
+              (setq ov (make-overlay (line-beginning-position) (line-end-position)))
+              (overlay-put ov 'face 'ablog-separator-face))))
         (setq last (match-string 0)))))
   (message "Adding separator lines... Done"))
 
