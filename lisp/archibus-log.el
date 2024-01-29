@@ -1,6 +1,6 @@
 ;;; archibus-log.el -- major mode for viewing ARCHIBUS Log files
 
-;; Copyright (c) 2016-2020 Fabrice Niessen
+;; Copyright (c) 2016-2024 Fabrice Niessen
 
 ;; This program is free software; you can redistribute it and/or
 ;; modify it under the terms of the GNU General Public License as
@@ -622,15 +622,17 @@
   (message "Adding separator lines... Done"))
 
 (defun ablog-previous-error ()
-  "Go to previous error."
+  "Go to the previous error."
   (interactive)
-  (move-beginning-of-line nil)
+  (beginning-of-line)
   (let ((case-fold-search nil))
-    (search-backward-regexp ablog-error-regexp)
-    (narrow-to-region 1 (line-end-position))
-    (setq current-count (ablog-count-errors))
-    (widen)
-    (message "%d of %d errors" current-count (ablog-count-errors))))
+    (if (search-backward-regexp ablog-error-regexp nil t)
+        (progn
+          (narrow-to-region (point-min) (line-end-position))
+          (let ((current-count (ablog-count-errors)))
+            (widen)
+            (message "%d of %d errors" current-count (ablog-count-errors))))
+      (message "No previous errors"))))
 
 (defun this-error-is-real ()
   "Eee."
@@ -639,28 +641,17 @@
   )
 
 (defun ablog-next-error ()
-  "Go to next error."
+  "Go to the next error."
   (interactive)
-  ;; (move-beginning-of-line nil)
-  ;; (forward-line 1)
   (let ((case-fold-search nil))
-    (search-forward-regexp ablog-error-regexp)
-    ;; Bypass lines [ERROR][2018-05-29 07:39:25,149][Authenticated] - [Page [/login.html] is not allowed]
-    (narrow-to-region 1 (line-end-position))
-    (setq current-count (ablog-count-errors))
-    (widen)
-    (message "%d of %d errors" current-count (ablog-count-errors)))
-
-  ;; (while (and (search-forward-regexp mylog-mode-error-regexp)
-  ;;             (save-excursion
-  ;;               (save-restriction
-  ;;                 (narrow-to-region (match-beginning 0) (match-end 0))
-  ;;                 (goto-char (point-min))
-  ;;                 (not (this-error-is-real))))))
-  ;; ;; do things with the valid match
-
-  ;; (next-logical-line)
-  )
+    (if (search-forward-regexp ablog-error-regexp nil t)
+        ;; TODO: Bypass lines [ERROR][2018-05-29 07:39:25,149][Authenticated] - [Page [/login.html] is not allowed]
+        (progn
+          (narrow-to-region (point-min) (line-end-position))
+          (let ((current-count (ablog-count-errors)))
+            (widen)
+            (message "%d of %d errors" current-count (ablog-count-errors))))
+      (message "No more errors"))))
 
 (defun ablog-previous-read-or-change ()
   "Go to line of previous SQL statement."
@@ -799,19 +790,18 @@ edit a log file which is still in use.  So, hide is preferred..."
   "Save the current code block as if killed, but don't kill it."
   (interactive)
   (save-excursion
-    (let (beg end)
-      (beginning-of-line)
-      (search-forward "[")
-      (forward-char 1)
-      (search-forward "[")
-      (forward-char 1)
-      (search-forward "[")
-      (forward-char 1)
-      (search-forward "[")
-      (setq beg (point))
-      (end-of-line)
-      (search-backward ", database=[data]]") ; For ARCHIBUS 23+.
-      (setq end (point))
+    (let ((beg (progn (beginning-of-line)
+                      (search-forward "[")
+                      (forward-char 1)
+                      (search-forward "[")
+                      (forward-char 1)
+                      (search-forward "[")
+                      (forward-char 1)
+                      (search-forward "[")
+                      (point)))
+          (end (progn (end-of-line)
+                      (search-backward ", database=[data]]") ; For ARCHIBUS 23+.
+                      (point))))
       (copy-region-as-kill beg end)
       (message "Copied the current SQL command"))))
 
