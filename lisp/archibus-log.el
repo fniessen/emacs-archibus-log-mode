@@ -532,11 +532,11 @@
   ;;     (5 'ablog-class-name-face)
   ;;     (6 'ablog-highlight-face))))
 
-  ;; Highlight dates which are clearly in the future (>=2021, maybe wrong timestamps?)
-  (highlight-regexp "['\"]202[1-9]-[[:digit:]][[:digit:]]-[[:digit:]][[:digit:]]['\"]" 'ablog-error-face)
-  (highlight-regexp "['\"]20[3456789][[:digit:]]-[[:digit:]][[:digit:]]-[[:digit:]][[:digit:]]['\"]" 'ablog-error-face)
-  (highlight-regexp "['\"]2[123456789][[:digit:]][[:digit:]]-[[:digit:]][[:digit:]]-[[:digit:]][[:digit:]]['\"]" 'ablog-error-face)
-  (highlight-regexp "['\"][13456789][[:digit:]][[:digit:]][[:digit:]]-[[:digit:]][[:digit:]]-[[:digit:]][[:digit:]]['\"]" 'ablog-error-face)
+  ;; Highlight dates which are clearly in the future (>=2025, maybe wrong timestamps?)
+  (highlight-regexp "['\"]202[5-9]-[[:digit:]][[:digit:]]-[[:digit:]][[:digit:]]['\"]" 'ablog-error-face)
+  (highlight-regexp "['\"]20[3-9][[:digit:]]-[[:digit:]][[:digit:]]-[[:digit:]][[:digit:]]['\"]" 'ablog-error-face)
+  (highlight-regexp "['\"]2[1-9][[:digit:]][[:digit:]]-[[:digit:]][[:digit:]]-[[:digit:]][[:digit:]]['\"]" 'ablog-error-face)
+  (highlight-regexp "['\"][3-9][[:digit:]][[:digit:]][[:digit:]]-[[:digit:]][[:digit:]]-[[:digit:]][[:digit:]]['\"]" 'ablog-error-face)
 
   ;; Highlight times which are out of normal working hours (maybe wrong timestamps?)
   (highlight-regexp " 0[01234567][[:digit:]]:[[:digit:]][[:digit:]]:[[:digit:]][[:digit:]]['\"]" 'ablog-error-face)
