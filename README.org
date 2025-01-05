@@ -94,6 +94,6 @@ and restart your favorite editor.
 
 -----
 
-© Copyright 2020-2024 Fabrice Niessen
+Copyright (C) 2020-2025 Fabrice Niessen. All rights reserved.
 
 Built using the theme [[https://github.com/fniessen/org-html-themes][ReadTheOrg]] provided by [[https://github.com/fniessen/org-html-themes][Org-HTML-Themes]].
